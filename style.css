@@ -1,0 +1,204 @@
+/* ---------- Base ---------- */
+:root {
+  --tinta: #14203f;
+  --tinta-escura: #0c1428;
+  --papel: #f2f4f7;
+  --texto: #25304a;
+  --ambar: #f0a63a;
+  --linha: #d7dce5;
+  --titulo: "Young Serif", Georgia, serif;
+  --corpo: "Instrument Sans", system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+
+body {
+  margin: 0;
+  font-family: var(--corpo);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--texto);
+  background: var(--papel);
+}
+
+h1, h2, h3 { font-family: var(--titulo); font-weight: 400; line-height: 1.2; margin: 0; }
+p { margin: 0; }
+ul { list-style: none; margin: 0; padding: 0; }
+a { color: inherit; }
+
+a:focus-visible {
+  outline: 3px solid var(--ambar);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+
+/* ---------- Cabeçalho ---------- */
+.topo {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 0.9rem clamp(1rem, 5vw, 4rem);
+  background: var(--tinta);
+  color: #fff;
+  border-bottom: 3px solid var(--ambar);
+}
+
+.logo {
+  font-family: var(--titulo);
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+.logo span {
+  margin-left: 0.35rem;
+  font-family: var(--corpo);
+  font-size: 0.85rem;
+  color: var(--ambar);
+}
+
+.topo ul { display: flex; gap: clamp(1rem, 3vw, 2.5rem); }
+.topo nav a {
+  text-decoration: none;
+  font-weight: 500;
+  padding-block: 0.3rem;
+  background: linear-gradient(var(--ambar), var(--ambar)) 0 100% / 0 2px no-repeat;
+  transition: background-size 0.25s;
+}
+.topo nav a:hover { background-size: 100% 2px; }
+
+/* ---------- Botões ---------- */
+.botao {
+  display: inline-block;
+  padding: 0.7rem 1.6rem;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s, background 0.2s;
+}
+.botao:hover { transform: translateY(-2px); }
+.botao-claro { background: #fff; color: var(--tinta); }
+.botao-ambar { background: var(--ambar); color: var(--tinta-escura); }
+
+/* ---------- Hero ---------- */
+/* Troque img/hero.jpg pela sua foto. Sem a imagem, aparecem os anéis de lente. */
+.hero {
+  min-height: min(78vh, 560px);
+  display: flex;
+  align-items: center;
+  padding: 4rem clamp(1rem, 5vw, 4rem);
+  color: #fff;
+  background:
+    linear-gradient(90deg, rgba(12, 20, 40, 0.92) 25%, rgba(12, 20, 40, 0.35)),
+    url("img/hero.jpg") center / cover,
+    repeating-radial-gradient(circle at 78% 50%, #1b2a52 0 14px, #0c1428 14px 30px);
+}
+.hero-texto { max-width: 34rem; }
+.hero h1 { font-size: clamp(2.4rem, 6vw, 4rem); margin-bottom: 1.2rem; }
+.hero p { margin-bottom: 2rem; color: #dbe2f0; }
+
+/* ---------- Sobre ---------- */
+.sobre {
+  background: var(--tinta);
+  color: #fff;
+  padding: 4.5rem clamp(1rem, 5vw, 4rem);
+}
+.miolo { max-width: 42rem; margin-inline: auto; text-align: center; }
+.sobre h2 { font-size: 2rem; margin-bottom: 1.2rem; }
+.sobre p { margin-bottom: 2rem; color: #dbe2f0; }
+
+/* ---------- Serviços ---------- */
+.servicos { padding: 5rem clamp(1rem, 5vw, 4rem); }
+.servicos > h2, .fotos > h2 { text-align: center; font-size: 2rem; color: var(--tinta); }
+
+.lista-servicos {
+  max-width: 70rem;
+  margin: 3rem auto 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 2.5rem 2rem;
+}
+.lista-servicos li { text-align: center; }
+.lista-servicos svg {
+  width: 3.4rem;
+  height: 3.4rem;
+  margin-bottom: 1rem;
+  fill: none;
+  stroke: var(--tinta);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.lista-servicos h3 { font-size: 1.2rem; margin-bottom: 0.6rem; color: var(--tinta); }
+.lista-servicos p { font-size: 0.95rem; max-width: 17rem; margin-inline: auto; }
+
+/* ---------- Fotos ---------- */
+.fotos { padding-bottom: 5rem; }
+.grade {
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  padding-inline: clamp(0.5rem, 3vw, 2rem);
+}
+.foto {
+  margin: 0;
+  aspect-ratio: 16 / 9;
+  background-size: cover;
+  background-position: center;
+  transition: filter 0.3s;
+}
+.foto:hover { filter: saturate(1.25) brightness(1.05); }
+
+/* Coloque suas fotos em img/foto1.jpg ... foto6.jpg. Os degradês só aparecem se faltar a imagem. */
+.f1 { background-image: url("img/foto1.jpg"), linear-gradient(160deg, #5d6c85, #cfd8e6); }
+.f2 { background-image: url("img/foto2.jpg"), linear-gradient(180deg, #b9d0e8, #5e8a3c); }
+.f3 { background-image: url("img/foto3.jpg"), linear-gradient(180deg, #3f78c4, #c7a58f); }
+.f4 { background-image: url("img/foto4.jpg"), linear-gradient(180deg, #2a4f8f, #e08a2f, #2b3a55); }
+.f5 { background-image: url("img/foto5.jpg"), linear-gradient(180deg, #8aa05a, #4b5a2b); }
+.f6 { background-image: url("img/foto6.jpg"), linear-gradient(180deg, #d9a15a, #5b4a3a); }
+
+/* ---------- Rodapé ---------- */
+.rodape { background: var(--tinta-escura); color: #c9d2e6; }
+.rodape-colunas {
+  max-width: 70rem;
+  margin: 0 auto;
+  padding: 4rem clamp(1rem, 5vw, 4rem);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+.rodape h2 { font-size: 1.3rem; color: #fff; margin-bottom: 1rem; }
+.rodape address { font-style: normal; display: grid; gap: 0.7rem; }
+.rodape a { text-decoration-color: var(--ambar); text-underline-offset: 3px; }
+.rodape a:hover { color: #fff; }
+.empresa p { max-width: 26rem; margin-bottom: 1.2rem; }
+.redes { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+
+.base {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  padding: 1.1rem clamp(1rem, 5vw, 4rem);
+  background: var(--tinta);
+  font-size: 0.9rem;
+}
+
+/* ---------- Telas pequenas ---------- */
+@media (max-width: 700px) {
+  .topo { justify-content: center; }
+  .grade { grid-template-columns: 1fr; }
+  .rodape-colunas { grid-template-columns: 1fr; gap: 2rem; }
+  .base { justify-content: center; text-align: center; }
+  .hero { background-position: 70% center; }
+}
